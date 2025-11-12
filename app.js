@@ -59,7 +59,13 @@ app.set("view engine", "jade");
 
 // === MIDDLEWARE ===
 app.use(logger("dev"));
-app.use(cors({ origin: true, credentials: true })); // Cho phép frontend khác domain gửi cookie
+app.use(
+  cors({
+    origin: "https://stirring-lolly-1a3182.netlify.app", // domain Netlify của bạn
+    credentials: true,
+  })
+);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

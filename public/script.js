@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================================================
   // 2. KHAI BÁO BIẾN VÀ LẤY CÁC ELEMENT TỪ HTML
   // ==========================================================================
-  const apiBaseUrl = "http://localhost:3000/api";
+  const apiBaseUrl = "https://serverrailway-production-494f.up.railway.app/api";
 
   const tableSelectionDiv = document.getElementById("table-selection");
   const orderSectionDiv = document.getElementById("order-section");
@@ -347,9 +347,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // =================== ĐỔI BÀN ===================
   async function loadTablesForChange() {
     console.log("Loading tables for change...");
-    const response = await fetch("http://localhost:3000/api/tables", {
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://serverrailway-production-494f.up.railway.app/api/tables",
+      {
+        credentials: "include",
+      }
+    );
     const tables = await response.json();
 
     const oldSelect = document.getElementById("old-table-select");
@@ -383,12 +386,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/api/change-table", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ old_table_id, new_table_id }),
-      });
+      const res = await fetch(
+        "https://serverrailway-production-494f.up.railway.app/api/change-table",
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ old_table_id, new_table_id }),
+        }
+      );
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Lỗi đổi bàn.");
@@ -427,9 +433,12 @@ document.addEventListener("DOMContentLoaded", () => {
     detailDiv.innerHTML = "";
 
     try {
-      const res = await fetch("http://localhost:3000/api/cooked-orders", {
-        credentials: "include",
-      });
+      const res = await fetch(
+        "https://serverrailway-production-494f.up.railway.app/api/cooked-orders",
+        {
+          credentials: "include",
+        }
+      );
       const bills = await res.json();
 
       if (!Array.isArray(bills) || bills.length === 0) {
@@ -472,7 +481,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/api/cooked-orders/${orderId}`,
+        `https://serverrailway-production-494f.up.railway.app/api/cooked-orders/${orderId}`,
         { credentials: "include" }
       );
       const items = await res.json();
@@ -535,7 +544,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function serveItem(detailId, orderId) {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/serve-item/${detailId}`,
+        `https://serverrailway-production-494f.up.railway.app/api/serve-item/${detailId}`,
         {
           method: "PUT",
           credentials: "include",

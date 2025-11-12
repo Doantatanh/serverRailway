@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("password").value;
 
       try {
-        const BACKEND_URL = "http://localhost:3000";
+        const BACKEND_URL =
+          "https://serverrailway-production-494f.up.railway.app";
         console.log(
           "LOGIN REQUEST: Gửi yêu cầu đăng nhập với Username:",
           username
@@ -51,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Chuyển hướng theo vai trò (sử dụng đường dẫn tương đối hoặc base URL)
         const role = data.role.toLowerCase();
 
-        if ( role === "manager") {
+        if (role === "manager") {
           window.location.href = `${FRONTEND_BASE_URL}/admin.html`;
         } else if (role === "chef") {
           window.location.href = `${FRONTEND_BASE_URL}/chef.html`;

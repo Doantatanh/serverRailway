@@ -1,6 +1,6 @@
 // admin_dashboard.js
 
-const API_BASE_URL = 'http://localhost:3000/api'; 
+const API_BASE_URL = 'https://serverrailway-production-494f.up.railway.app/api'; 
 const modal = document.getElementById('crudModal');
 const modalTitle = document.getElementById('modalTitle');
 const crudForm = document.getElementById('crudForm');

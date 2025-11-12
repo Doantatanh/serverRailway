@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const username = localStorage.getItem("currentUsername"); // Đã thống nhất tên key
 
   // Khai báo API
-  const apiBaseUrl = "http://localhost:3000/api";
+  const apiBaseUrl = "https://serverrailway-production-494f.up.railway.app/api";
 
   // Khai báo Element
   const pendingBillListDiv = document.getElementById("pending-bill-list");
@@ -31,7 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
    */
   function handleAuthError(response) {
     if (response.status === 401 || response.status === 403) {
-      console.warn("Lỗi xác thực (401/403). Đang chuyển hướng về trang đăng nhập.");
+      console.warn(
+        "Lỗi xác thực (401/403). Đang chuyển hướng về trang đăng nhập."
+      );
       logout(); // Gọi hàm logout đã định nghĩa ở cuối file
       return true; // Báo hiệu đã xử lý lỗi
     }
@@ -87,7 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const bills = Object.values(allPendingBills);
 
     if (bills.length === 0) {
-        pendingBillListDiv.innerHTML = '<div class="empty-state">Không có Bill đang chờ nào.</div>';
+      pendingBillListDiv.innerHTML =
+        '<div class="empty-state">Không có Bill đang chờ nào.</div>';
     }
 
     bills.forEach((bill, index) => {
@@ -255,25 +258,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // HÀM LOGOUT
 
-
   // --- KHỞI CHẠY ---
   fetchAndGroupOrders();
   // Tự động làm mới danh sách sau mỗi 30 giây
   setInterval(fetchAndGroupOrders, 30000);
 });
 
-  async function logout() {
-    const apiBaseUrl = "http://localhost:3000/api"; 
-    console.log("DEBUG: Đang gọi hàm logout từ chef.js");
-    try {
-      await fetch(`${apiBaseUrl}/logout`, {
-        method: "POST",
-        credentials: "include",
-      });
-    } catch (error) {
-      console.error("Lỗi khi gọi API logout:", error);
-    }
-
-    localStorage.clear();
-    window.location.href = "/login.html";
+async function logout() {
+  const apiBaseUrl = "https://serverrailway-production-494f.up.railway.app/api";
+  console.log("DEBUG: Đang gọi hàm logout từ chef.js");
+  try {
+    await fetch(`${apiBaseUrl}/logout`, {
+      method: "POST",
+      credentials: "include",
+    });
+  } catch (error) {
+    console.error("Lỗi khi gọi API logout:", error);
   }
+
+  localStorage.clear();
+  window.location.href = "/login.html";
+}
