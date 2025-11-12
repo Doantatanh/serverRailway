@@ -1,17 +1,14 @@
 const mysql = require("mysql2");
-const config = require("config"); // npm install config
 
-// Lấy thông tin kết nối từ default.json
-const dbConfig = config.get("dbConfig");
-
+// Lấy thông tin kết nối từ biến môi trường (do Railway cung cấp)
 const pool = mysql.createPool({
-  host: dbConfig.host,
-  user: dbConfig.user,
-  password: dbConfig.password,
-  database: dbConfig.database,
-  port: dbConfig.port || 3306, // nếu bạn không có port thì mặc định 3306
+  host: process.env.DB_HOST, // mysql.railway.internal
+  user: process.env.DB_USER, // root
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME, // railway
+  port: process.env.DB_PORT || 3306,
   connectionLimit: 10,
-  ssl: { rejectUnauthorized: true },
+  ssl: { rejectUnauthorized: true }, // Railway yêu cầu SSL
 });
 
 module.exports = pool.promise();
