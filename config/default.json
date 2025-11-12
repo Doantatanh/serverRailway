@@ -6,11 +6,11 @@
   "vnp_ReturnUrl": "http://stirring-lolly-1a3182.netlify.app//order/vnpay_return",
 
   "dbConfig": {
-    "host": "mysql.railway.internal",
+    "host": "switchback.proxy.rlwy.net",
     "user": "root",
-    "password": "fAUlXqzrQDDFIiKnMsiRHZFqhRxCyIgQ",
+    "password": "fAUIXzqrQDDFlKmMsIRHZFqhRxCyIgQ",
     "database": "railway",
-    "port": 3306
+    "port": 13030
   },
   "JWT_SECRET": "chuoi_bi_mat_nay_rat_quan_trong_khong_de_lo"
 }
