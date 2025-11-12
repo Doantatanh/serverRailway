@@ -58,10 +58,21 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
 // === MIDDLEWARE ===
-app.use(logger("dev"));
+const allowedOrigins = [
+  "https://pubvn.netlify.app", // ✅ Netlify site chính thức
+  "http://localhost:3000", // ✅ dùng khi test local
+  "http://127.0.0.1:5500", // ✅ nếu bạn mở bằng Live Server
+];
+
 app.use(
   cors({
-    origin: "https://stirring-lolly-1a3182.netlify.app", // domain Netlify của bạn
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
