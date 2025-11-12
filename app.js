@@ -153,10 +153,8 @@ app.use((err, req, res, next) => {
 
 // === KHỞI ĐỘNG SERVER ===
 const PORT = process.env.PORT || 3000;
-const server = app.listen(PORT, () => {
-  console.log(
-    `Server đã khởi động tại: http://localhost:${server.address().port}`
-  );
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`✅ Server đang chạy trên cổng ${PORT}`);
 });
 
 module.exports = app;
